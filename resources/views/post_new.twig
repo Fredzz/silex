@@ -1,0 +1,38 @@
+{% extends "index.twig" %}
+
+{% block title %} Create new post {% endblock %}
+
+{% block js %}
+<script type="text/javascript" src="{{ app.request.basepath }}/js/jquery.js"></script>
+{% endblock %}
+
+{% block content %}
+
+<div id="stylized" class="myform">
+    <form id="new_post_form" name="form" method="post" action="#">
+        <h1>Add Post</h1>
+        <p>Please fill in below fields to add a new Post</p>
+
+    {{ form_widget(form) }}
+
+        <button type="submit" id="add_new">Add</button>
+        <div class="spacer"></div>
+        <div class="result"></div>
+    </form>
+</div>
+
+<script type="text/javascript">
+    $(document).ready(function() {
+        $("#new_post_form").submit(function(e) {
+            //Prevents submitting the form by normal way
+            e.preventDefault();
+            
+            // Ajax call
+            $.post("{{ app.url_generator.generate('post_new') }}", $("#new_post_form").serializeArray(), function(data) {
+                $(".result").hide();
+                $(".result").html(data['message']).fadeIn('fast');
+            });
+        });
+    });
+    </script>
+{% endblock %}

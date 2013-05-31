@@ -1,0 +1,272 @@
+/* 
+    Document   : main
+    Created on : May 14, 2013, 7:06:55 PM
+    Author     : Fred
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+/* http://meyerweb.com/eric/tools/css/reset/ 
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 100%;
+    font: inherit;
+    vertical-align: baseline;
+    text-decoration: none;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+    display: block;
+}
+body {
+    line-height: 1;
+}
+ol, ul {
+    list-style: none;
+}
+blockquote, q {
+    quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+    content: '';
+    content: none;
+}
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+
+input, textarea {
+    display: block;
+}
+
+/* END RESET */
+
+body {
+    font-family: Arial, Helvetica, Tahoma, sans-serif;
+}
+
+a:hover{text-decoration: underline;}
+
+h2 {
+    font-size: 22px;
+    margin: 10px 0;
+    color: #333333;
+}
+
+h3 {
+    margin: 10px 0;
+    color: #333333;
+}
+
+.content{
+    margin: 10px;
+}
+
+.content ul {list-style-type: none;}
+
+/* Menu */
+.menu {
+    width: 100%;
+    background-color: #ccc;
+    height: 33px;
+    border-bottom: 1px solid #000;
+}
+
+.menu nav{}
+
+.menu nav ul {
+    list-style-type: none;
+}
+.menu nav li {
+    
+    font-family:Arial;
+    font-size:12px;
+    text-decoration: none;
+    float:left;
+    padding:10px;
+    background-color: #333333;
+    color:#ffffff;
+    border: 1px solid #000;
+    border-bottom-width: 0px;
+}
+
+.menu nav li:hover {
+    border-bottom: 4px solid royalblue;
+}
+
+.menu nav li:last-child {
+    clear: right;
+}
+.menu nav li a {
+    color: #ffffff;
+}
+.menu nav li a:hover {
+    text-decoration: none;
+}
+
+/* Authors list */
+
+.authors_list {}
+.authors_list ul{}
+
+.authors_list ul li {
+    padding: 15px;
+    border-bottom: 1px solid #ccc;
+    background-color: #eee;
+}
+
+.authors_list ul li:nth-child(odd) {
+    background-color: #eef;
+}
+
+.authors_list ul li h3 a{
+    font-size: 16px;
+    font-weight: bold;
+    color: #333333;
+}
+
+.authors_list ul li a{}
+
+.authors_list ul li a:hover{}
+
+.authors_list span {
+    margin-left: 10px;
+}
+.delete_post {
+    color:#000;
+    margin-right: 10px;
+}
+
+/* Author single */
+.author_single {}
+
+.author_single .about{
+    width:240px;
+    border: 1px solid #cecece;
+    padding: 20px;
+}
+
+.author_single .about span {
+    font-weight: bold;
+}
+
+.author_single .about li{
+    margin-bottom: 3px;
+}
+.author_single .posts_list{
+    margin-top: 20px;
+    border: 1px solid #cecece;
+    padding: 20px;
+    width: 640px;
+}
+.author_single .posts_list li{
+    margin-bottom: 5px;
+    padding: 5px;
+    border: 1px solid #cecece;
+}
+
+.author_single .posts_list li:nth-child(odd){
+    background-color: #eee;
+}
+
+.author_single .posts_list li:hover{
+    background-color: lemonchiffon;
+}
+.author_single .posts_list li a {
+    color: #000;
+}
+
+/* Post single */
+
+.post_single {}
+.post_single ul {}
+.post_single ul li {
+    margin-bottom: 5px;
+    padding: 5px;
+}
+/* Form styling */
+
+.myform{
+    margin-left: 5px;
+    margin-top: 20px;
+    width:400px;
+    padding:14px;
+}
+
+.myform .result {
+    padding: 10px;
+    height: 20px;
+}
+#stylized{
+    border:solid 2px #b7ddf2;
+    background:#ebf4fb;
+}
+#stylized h1 {
+    font-size:14px;
+    font-weight:bold;
+    margin-bottom:8px;
+}
+#stylized p{
+    font-size:11px;
+    color:#666666;
+    margin-bottom:20px;
+    border-bottom:solid 1px #b7ddf2;
+    padding-bottom:10px;
+}
+#stylized label{
+    display:block;
+    font-weight:bold;
+    text-align:right;
+    width:140px;
+    float:left;
+}
+#stylized .small{
+    color:#666666;
+    display:block;
+    font-size:11px;
+    font-weight:normal;
+    text-align:right;
+    width:140px;
+}
+#stylized input, #stylized textarea, #stylized select{
+    float:left;
+    font-size:12px;
+    padding:4px 2px;
+    border:solid 1px #aacfe4;
+    width:200px;
+    margin:2px 0 20px 10px;
+}
+#stylized button{
+    clear:both;
+    margin-left:150px;
+    width:125px;
+    height:31px;
+    background:#666666 url(img/button.png) no-repeat;
+    text-align:center;
+    line-height:31px;
+    color:#FFFFFF;
+    font-size:11px;
+    font-weight:bold;
+}

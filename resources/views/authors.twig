@@ -1,0 +1,69 @@
+{% extends "index.twig" %}
+
+{% block title %}Author index {% endblock %}
+
+{% block js %}
+<script type="text/javascript" src="{{ app.request.basepath }}/js/jquery.js"></script>
+{% endblock %}
+
+{% block content %}
+
+<a href="{{ app.url_generator.generate('author_new') }}"><img src="{{ app.request.basepath }}/img/add-user.png" title="Add new author" class="add_user"/></a>
+
+{% if authors %}
+<div class="authors_list">
+    <ul>
+{% for author in authors %}
+            <li id="{{ author.author_id }}" class="author_li">
+                <h3><a href="{{ app.url_generator.generate('authors')}}{{ author.author_id }}">{{ author.author_name }}</a><span><a href="#" class="delete_author"><img src="{{ app.request.basepath }}/img/remove-user.png" title="Delete author" /></a></span></h3> 
+                <p>ID: {{ author.author_id }}</p>
+                <p>Bio: {{ author.bio }}</p>
+                <p>Email: <a href="mailto:{{ author.email}}">{{ author.email }}</a></p>
+            </li>
+
+{% endfor %}
+        </ul>
+    </div>
+{% else %}
+    <h3>There are no authors. Please add one <a href="{{app.url_generator.generate('author_new') }}">here</a>!</h3>
+{% endif %}
+    <script type="text/javascript">
+        $(document).ready(function() {
+            // handles deleting a post
+            $(".delete_author").click(function(e) {
+                if (!confirm('Are you sure you want to delete this author and all his posts?')) {
+                    return;
+                }
+                ;
+                e.preventDefault();
+
+                // Gets author element and author Id into vars
+                var authorEl = $(this).parents('li');
+                var authorId = $(authorEl).attr('id');
+
+                // Generate URL for ajax call
+                var url = authorId + '/delete';
+                // Ajax call
+                $.post(url, $(authorId), function(data) {
+
+                    // Checks if it has been deleted  
+                    if (data['status'] == 'deleted') {
+
+                        // Fades out the element and removes it
+                        $(authorEl).fadeOut(600, function() {
+                            $(this).remove();
+
+                            if (!$('.author_li').length) {
+                                $("<h3>There are no authors to display.</h3>").appendTo('.authors_list');
+                            }
+                        }); // end fadeout
+
+
+
+                    } // end success delete
+
+                }); // end ajax call
+            }); // end click function
+        });
+        </script>
+{% endblock %}

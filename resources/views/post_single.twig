@@ -1,0 +1,14 @@
+{% extends "index.twig" %}
+
+{% block title %}Post: {{ post.title }} {% endblock %}
+
+{% block content %}
+<div class="post_single">
+    <ul>
+        <li>ID: {{ post.post_id }}</li>
+        <li>Author: <a href="{{ app.url_generator.generate('authors')}}{{author.author_id}} ">{{ author.author_name }}</a></li>
+        <li>Title: {{ post.title }}</li>
+        <li>Message: {{ post.message }}</li>
+    </ul>    
+</div>
+{% endblock %}

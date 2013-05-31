@@ -1,0 +1,82 @@
+{% extends "index.twig" %}
+
+{% block title %}{{ author.author_name}} {% endblock %}
+{% block js %}
+<script type="text/javascript" src="{{ app.request.basepath }}/js/jquery.js"></script>
+{% endblock %}
+
+{% block content %}
+
+<div class="author_single">
+    <div class="about">
+        <h2>About the author: </h2>
+        <ul>
+            <li><span>ID:</span> {{ author.author_id }}</li>
+            <li><span>Name:</span> {{ author.author_name }}</li>
+            <li><span>Bio:</span> {{ author.bio }}</li>
+            <li><span>Email:</span> {{ author.email }}</li>
+        </ul>
+    </div>
+
+    <div class="posts_list">
+        {% if posts %} 
+            <h2 id="section_header"> List of posts by this author: </h2>
+            <ul id="post_entries">
+                {% for post in posts %}
+                    <li id="{{ post.post_id }}"><a href="#" class="delete_post" title="Delete post">(X)</a><a href="../post/{{ post.post_id }}">{{ post.title }}</a></li>
+                {% endfor %}
+                    </ul>
+        {% else %}
+                    <p id="posts">There are currently no posts by this user.</p>
+        {%endif%}
+    </div>
+    </div>
+    <script type="text/javascript">
+        $(document).ready(function() {
+
+            // handles deleting a post
+            $(".delete_post").click(function(e) {
+                if (!confirm('Are you sure you want to delete?')) {
+                    return;
+                }
+                ;
+
+                // Prevents original clicking
+                e.preventDefault();
+
+                // Gets post element and post Id into vars
+                var postEl = $(this).parent('li');
+                var postId = $(postEl).attr('id');
+
+                // Gets li element
+
+
+                // Generate URL to delete post
+                var url = "../post/" + postId + '/delete';
+                // Ajax call
+                $.post(url, $(postId), function(data) {
+
+                    // Checks if it has been deleted  
+                    if (data['status'] == 'deleted') {
+
+                        // Fades out the element and removes it
+                        $(postEl).fadeOut(600, function() {
+                            $(this).remove();
+
+                            // Remove the UL element and change p text if it was
+                            // the last element
+                            if (!$('#post_entries > li').length) {
+                                $("#section_header").fadeOut('slow', function() {
+                                    $(this).html('There are currently no posts by this user.');
+                                    $(this).fadeIn('slow');
+                                });
+                            }
+                        }); // end fadeout
+                    } // end success delete
+
+                }); // end ajax call
+            }); // end click function
+        });
+        </script>
+    </div>
+{% endblock %}
